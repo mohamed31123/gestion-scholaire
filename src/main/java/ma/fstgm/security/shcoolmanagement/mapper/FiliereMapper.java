@@ -3,7 +3,9 @@ package ma.fstgm.security.shcoolmanagement.mapper;
 import ma.fstgm.security.shcoolmanagement.dto.request.FiliereRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.FiliereResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Filiere;
+import org.springframework.stereotype.Component;
 
+@Component
 public class FiliereMapper {
     public Filiere toEntity(FiliereRequest filiereRequest) {
 
