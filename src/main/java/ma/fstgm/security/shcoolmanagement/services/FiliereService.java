@@ -38,7 +38,7 @@ public class FiliereService {
                 .map(filiereMapper::toResponse)
                 .toList();
     }
-    public StudentResponse updateStudent(Long id, StudentRequest dto) {
+    public FiliereResponse updateFiliere(Long id, FiliereRequest dto) {
         Filiere filiere =  filiereRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Étudiant introuvable avec l'id : " + id));
         Filiere updateFiliere = filiereRepository.save(filiere);

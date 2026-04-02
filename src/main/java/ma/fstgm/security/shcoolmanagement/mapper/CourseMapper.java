@@ -3,7 +3,10 @@ package ma.fstgm.security.shcoolmanagement.mapper;
 import ma.fstgm.security.shcoolmanagement.dto.request.CourseRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.CourseResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Course;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class CourseMapper {
     public Course toEntity(CourseRequest dto){
         Course course = new Course();
