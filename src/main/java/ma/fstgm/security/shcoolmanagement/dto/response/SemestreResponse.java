@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record SemestreResponse(
         Long id ,
-        LocalDate annee
+        LocalDate annee ,
+        String nom
 ) {
 }
