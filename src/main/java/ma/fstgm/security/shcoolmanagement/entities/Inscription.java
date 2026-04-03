@@ -1,32 +1,33 @@
 package ma.fstgm.security.shcoolmanagement.entities;
 
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Inscription {
     @EmbeddedId
-    private InscriptionPK id ;
-    private LocalDate dateInscription ;
+    private InscriptionPK id;
+    private LocalDate dateInscription;
 
 
     //ca c'est une classe d'association donc il doit contenier les cles etrangere
     //c'une cle compose
     @ManyToOne
+    @MapsId("idCourse")
     @JoinColumn(name = "idCourse", nullable = false)
-    private Course course ;
+    private Course course;
+
     @ManyToOne
-    @JoinColumn(name = "idStudent")
-    private Student student ;
+    @MapsId("idStudent")
+    @JoinColumn(name = "idStudent" , nullable = false)
+    private Student student;
 
 }
