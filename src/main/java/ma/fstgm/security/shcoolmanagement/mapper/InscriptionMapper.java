@@ -3,7 +3,10 @@ package ma.fstgm.security.shcoolmanagement.mapper;
 import ma.fstgm.security.shcoolmanagement.dto.request.InscriptionRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.InscriptionResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Inscription;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class InscriptionMapper {
     public Inscription toEntity(InscriptionRequest dto){
         Inscription inscription = new Inscription();
