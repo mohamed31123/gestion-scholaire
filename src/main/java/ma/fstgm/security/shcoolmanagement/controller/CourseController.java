@@ -41,7 +41,8 @@ public class CourseController {
     @GetMapping("/{id}")
     @Operation(summary = "getting a course by id")
     public CourseResponse getCourse(@PathVariable Long id){
-        courseService.getCourseById(id);
+
+        return courseService.getCourseById(id);
     }
 
     @PostMapping("/update/{id}")
