@@ -27,10 +27,14 @@ public class StudentController {
         return studentService.addStudent(dto);
     }
 
+
+
     @GetMapping
     public List<StudentResponse> getStudents() {
         return studentService.getAllStudents();
     }
+
+
 
     @GetMapping("/{id}")
     @Operation(summary = "getting a student by id")
@@ -38,11 +42,15 @@ public class StudentController {
         return studentService.getStudentById(id);
     }
 
+
+
     @PostMapping("/update/{id}")
     @Operation(summary = "Updating a student")
     public StudentResponse updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequest dto) {
         return studentService.updateStudent(id, dto);
     }
+
+
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "Deleting  a student")
