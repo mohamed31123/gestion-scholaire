@@ -3,7 +3,9 @@ package ma.fstgm.security.shcoolmanagement.mapper;
 import ma.fstgm.security.shcoolmanagement.dto.request.ProfesseurRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.ProfesseurResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Professeur;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProfesseurMapper {
     public Professeur toEntity(ProfesseurRequest dto) {
         Professeur prof = new Professeur();
