@@ -44,5 +44,10 @@ public class DepartementService {
                 .map(departementMapper::toResponse)
                 .toList();
     }
+    public DepartementResponse getDepartementById(Long id){
+        Departement departement = departementRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Departement with id :  " + id +" not found"));
+        return departementMapper.toResponse(departement);
+    }
 
 }

@@ -21,5 +21,9 @@ public class DepartementMapper {
         );
     }
 
-    public void updateDepartement(Departement departement , DepartementRequest dto){
-        departement.setNom(dto.nom() }
+    public void updateDepartement(Departement departement, DepartementRequest dto) {
+        departement.setNom(dto.nom());
+    }
+
+
+}

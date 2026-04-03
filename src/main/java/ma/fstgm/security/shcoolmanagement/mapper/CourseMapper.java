@@ -3,14 +3,16 @@ package ma.fstgm.security.shcoolmanagement.mapper;
 import ma.fstgm.security.shcoolmanagement.dto.request.CourseRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.CourseResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Course;
+import ma.fstgm.security.shcoolmanagement.entities.Professeur;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class CourseMapper {
-    public Course toEntity(CourseRequest dto){
+    public Course toEntity(CourseRequest dto , Professeur prof){
         Course course = new Course();
         course.setCode(dto.code());
+        course.getProfesseur().setId(prof.getId());
         return course ;
     }
     public CourseResponse toResponse(Course course ){
@@ -18,7 +20,9 @@ public class CourseMapper {
         return new CourseResponse(
                 course.getId() ,
                 course.getNomCours(),
-                course.getCode()
+                course.getCode(),
+                course.getProfesseur().getNom()
+
 
         );
     }
