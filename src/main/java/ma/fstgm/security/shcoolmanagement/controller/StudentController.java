@@ -15,30 +15,36 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
+
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
+
     @PostMapping
     @Operation(summary = "Adding a student")
     @ResponseStatus(HttpStatus.CREATED)
     public StudentResponse addStudent(@Valid @RequestBody StudentRequest dto) {
         return studentService.addStudent(dto);
     }
+
     @GetMapping
     public List<StudentResponse> getStudents() {
         return studentService.getAllStudents();
     }
+
     @GetMapping("/{id}")
     @Operation(summary = "getting a student by id")
     public StudentResponse getStudent(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
-    @PostMapping("/{id}")
+
+    @PostMapping("/update/{id}")
     @Operation(summary = "Updating a student")
     public StudentResponse updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequest dto) {
         return studentService.updateStudent(id, dto);
     }
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/delete/{id}")
     @Operation(summary = "Deleting  a student")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteStudent(@PathVariable Long id) {

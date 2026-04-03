@@ -3,7 +3,9 @@ package ma.fstgm.security.shcoolmanagement.mapper;
 import ma.fstgm.security.shcoolmanagement.dto.request.SemestreRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.SemestreResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Semestre;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SemestreMapper {
 
     public Semestre toEntity(SemestreRequest dto){
