@@ -9,8 +9,8 @@ public record StudentRequest(
         String firstName,
         @NotBlank(message = "The last name cannot be Blank")
         @NotBlank(message = "The first name cannot be Blank")
-        String majour,
-        @NotBlank(message = "The majour  cannot be Blank")
+        String major,
+        @NotBlank(message = "The major  cannot be Blank")
 
         String lastName,
         @Email(message = "Your have submitted an invalid email")

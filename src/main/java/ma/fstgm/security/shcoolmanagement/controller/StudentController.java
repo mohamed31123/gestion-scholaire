@@ -27,22 +27,31 @@ public class StudentController {
         return studentService.addStudent(dto);
     }
 
+
+
     @GetMapping
     public List<StudentResponse> getStudents() {
         return studentService.getAllStudents();
     }
 
+
+
+    @GetMapping("/{id}")
     @GetMapping("/get/{id}")
     @Operation(summary = "getting a student by id")
     public StudentResponse getStudent(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
 
+
+
     @PostMapping("/update/{id}")
     @Operation(summary = "Updating a student")
     public StudentResponse updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequest dto) {
         return studentService.updateStudent(id, dto);
     }
+
+
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "Deleting  a student")
