@@ -19,30 +19,40 @@ public class FiliereService {
     private final FiliereRepository filiereRepository;
     private final FiliereMapper filiereMapper;
 
-    public FiliereService(FiliereRepository filiereRepository ,  FiliereMapper filiereMapper) {
+    public FiliereService(FiliereRepository filiereRepository, FiliereMapper filiereMapper) {
         this.filiereRepository = filiereRepository;
         this.filiereMapper = filiereMapper;
     }
+
     public FiliereResponse addFiliere(FiliereRequest filiereRequest) {
         Filiere filier = filiereMapper.toEntity(filiereRequest);
         Filiere addedFiliere = filiereRepository.save(filier);
         return filiereMapper.toResponse(addedFiliere);
     }
-    public void deleteFiliere(Long id ) {
+
+    public void deleteFiliere(Long id) {
         Filiere filiere = filiereRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Filiere introuvable avec l'id : " + id));
     }
+
     public List<FiliereResponse> getAllFilieres() {
         return filiereRepository.findAll()
                 .stream()
                 .map(filiereMapper::toResponse)
                 .toList();
     }
+
     public FiliereResponse updateFiliere(Long id, FiliereRequest dto) {
-        Filiere filiere =  filiereRepository.findById(id)
+        Filiere filiere = filiereRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Étudiant introuvable avec l'id : " + id));
         Filiere updateFiliere = filiereRepository.save(filiere);
         return filiereMapper.toResponse(updateFiliere);
 
+    }
+
+    public FiliereResponse getFiliereById(Long id) {
+        Filiere filiere = filiereRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Filiere introuvable avec l'id : " + id));
+        return filiereMapper.toResponse(filiere);
     }
 }
