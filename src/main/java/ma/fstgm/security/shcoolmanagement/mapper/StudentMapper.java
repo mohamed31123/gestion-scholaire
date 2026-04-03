@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class StudentMapper {
-    public Student toEntity(StudentRequest dto ){
+    public Student toEntity(StudentRequest dto , Filiere filiere ){
         Student student = new Student();
         student.setFirstName(dto.firstName());
         student.setLastName(dto.lastName());
@@ -16,7 +16,7 @@ public class StudentMapper {
         student.setPassword(dto.password());
         student.setAge(dto.age());
         student.setMajor(dto.majour());
-        student.setFiliere(dto.filiere());
+        student.getFiliere().setId(filiere.getId());
         return student;
     }
     public StudentResponse toResponse(Student student){

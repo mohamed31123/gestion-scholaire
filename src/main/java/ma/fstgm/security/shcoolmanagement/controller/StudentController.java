@@ -32,7 +32,7 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     @Operation(summary = "getting a student by id")
     public StudentResponse getStudent(@PathVariable Long id) {
         return studentService.getStudentById(id);

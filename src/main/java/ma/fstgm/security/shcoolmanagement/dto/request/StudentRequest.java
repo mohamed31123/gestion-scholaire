@@ -22,6 +22,6 @@ public record StudentRequest(
         @Min(value = 17, message = "The Minumum age is 17")
         @Max(value = 40, message = "the Max age is 40")
         Integer age ,
-        Filiere filiere
+        Long id_filiere
 ) {
 }

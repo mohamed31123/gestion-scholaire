@@ -48,11 +48,17 @@ public class InscriptionService {
         Inscription inscription = inscriptionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Inscription introuvable avec le id : " + id));
 
-        inscriptionMapper.UpdateInscription(inscription, dto);
+        inscriptionMapper.updateInscription(inscription, dto);
 
         inscriptionRepository.save(inscription);
 
         return inscriptionMapper.toResponse(inscription);
 
+    }
+
+    public InscriptionResponse getInscriptionById(InscriptionPK id) {
+        Inscription inscription = inscriptionRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Inscription introuvable avec le id : " + id));
+        return inscriptionMapper.toResponse(inscription);
     }
 }

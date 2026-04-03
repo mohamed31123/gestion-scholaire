@@ -55,6 +55,11 @@ public class StudentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Étudiant introuvable avec l'id : " + id));
         studentRepository.delete(student);
     }
+    public StudentResponse findStudentById(Long id){
+        Student student = studentRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("Etudiant introuvable avec l'id : " + id));
+        return studentMapper.toResponse(student);
+    }
 
 
 }
