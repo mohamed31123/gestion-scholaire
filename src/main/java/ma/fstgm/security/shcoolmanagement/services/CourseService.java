@@ -7,6 +7,7 @@ import ma.fstgm.security.shcoolmanagement.dto.response.CourseResponse;
 import ma.fstgm.security.shcoolmanagement.dto.response.FiliereResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Course;
 import ma.fstgm.security.shcoolmanagement.entities.Filiere;
+import ma.fstgm.security.shcoolmanagement.entities.Professeur;
 import ma.fstgm.security.shcoolmanagement.exceptions.ResourceNotFoundException;
 import ma.fstgm.security.shcoolmanagement.mapper.CourseMapper;
 import ma.fstgm.security.shcoolmanagement.mapper.FiliereMapper;
@@ -31,7 +32,7 @@ public class CourseService {
     }
 
     public CourseResponse addCourse(CourseRequest courseRequest) {
-        Course course = courseMapper.toEntity(courseRequest);
+        Course course = courseMapper.toEntity(courseRequest , new Professeur());
         Course addCourse = courseRepository.save(course);
         return courseMapper.toResponse(addCourse);
     }
