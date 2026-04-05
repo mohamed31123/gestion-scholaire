@@ -36,7 +36,6 @@ public class StudentController {
 
 
 
-    @GetMapping("/{id}")
     @GetMapping("/get/{id}")
     @Operation(summary = "getting a student by id")
     public StudentResponse getStudent(@PathVariable Long id) {
@@ -45,7 +44,7 @@ public class StudentController {
 
 
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     @Operation(summary = "Updating a student")
     public StudentResponse updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequest dto) {
         return studentService.updateStudent(id, dto);

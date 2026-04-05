@@ -8,11 +8,12 @@ public record StudentRequest(
         @NotBlank(message = "The first name cannot be Blank")
         String firstName,
         @NotBlank(message = "The last name cannot be Blank")
-        @NotBlank(message = "The first name cannot be Blank")
-        String major,
-        @NotBlank(message = "The major  cannot be Blank")
-
         String lastName,
+
+
+        @NotBlank(message = "The major name cannot be Blank")
+        String major,
+
         @Email(message = "Your have submitted an invalid email")
         @NotBlank(message = "Email cannot be Blank")
         String email,
@@ -21,7 +22,7 @@ public record StudentRequest(
         @NotNull(message = "age cannot be null")
         @Min(value = 17, message = "The Minumum age is 17")
         @Max(value = 40, message = "the Max age is 40")
-        Integer age ,
+        Integer age,
         Long id_filiere
 ) {
 }

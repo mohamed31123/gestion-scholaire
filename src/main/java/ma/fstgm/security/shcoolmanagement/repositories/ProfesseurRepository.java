@@ -8,6 +8,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface ProfesseurRepository extends JpaRepository<Professeur , Long> {
-    Optional<Professeur> findByNom(Professeur professeur);
+public interface ProfesseurRepository extends JpaRepository<Professeur, Long> {
+
+    Optional<Professeur> findByNom(String nom);
 }

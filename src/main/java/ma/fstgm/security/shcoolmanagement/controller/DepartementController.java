@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping
+@RequestMapping("/departement")
 public class DepartementController {
 
 
@@ -24,13 +24,13 @@ public class DepartementController {
         this.departementService = departementService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     @Operation(summary = "recuperer toutes les departements")
     public List<DepartementResponse> getAllDepartements() {
         return departementService.getAllDepartements();
     }
 
-    @GetMapping
+    @GetMapping("get/{id}")
     @Operation(summary = "recuperer une departement par son id ")
     public DepartementResponse getDepartementById(@RequestParam("id") Long id) {
 
@@ -42,14 +42,14 @@ public class DepartementController {
     public DepartementResponse insertDepartement(@RequestBody DepartementRequest dto) {
         return departementService.addDepartement(dto);
     }
-    @DeleteMapping
+    @DeleteMapping("delete/{id}")
     @Operation(summary = "supprimer une departement")
     public void deleteDepartement( @PathVariable Long id) {
         departementService.deleteDepartement(id);
     }
 
 
-    @PostMapping
+    @PutMapping
     @Operation(summary = "modifier une departement")
     public DepartementResponse updateDepartement(@Valid @RequestBody DepartementRequest dto , @RequestParam("id") Long id) {
         return departementService.updateDeprtement(id, dto);

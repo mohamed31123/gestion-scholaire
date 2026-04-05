@@ -12,7 +12,9 @@ public class CourseMapper {
     public Course toEntity(CourseRequest dto , Professeur prof){
         Course course = new Course();
         course.setCode(dto.code());
-        course.getProfesseur().setId(prof.getId());
+        course.setProfesseur(prof);
+        course.setProfesseur(prof);
+        course.setNomCours(dto.nomCours());
         return course ;
     }
     public CourseResponse toResponse(Course course ){
