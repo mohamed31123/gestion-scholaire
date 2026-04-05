@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    Optional<Course> findByCode(Course course);
-    @Query("SELECT c FROM Course c LEFT JOIN FETCH c.professeur WHERE c.id = : id ")
+    Optional<Course> findByCode(String code);
+    @Query("SELECT c FROM Course c LEFT JOIN FETCH c.professeur WHERE c.id = :id ")
     Course FindCourseByProf(@Param("id")  Long id) ;
 }

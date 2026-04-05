@@ -33,6 +33,7 @@ public class FiliereService {
     public void deleteFiliere(Long id) {
         Filiere filiere = filiereRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Filiere introuvable avec l'id : " + id));
+        filiereRepository.delete(filiere);
     }
 
     public List<FiliereResponse> getAllFilieres() {
@@ -45,6 +46,7 @@ public class FiliereService {
     public FiliereResponse updateFiliere(Long id, FiliereRequest dto) {
         Filiere filiere = filiereRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Étudiant introuvable avec l'id : " + id));
+        filiereMapper.updateFiliere(filiere, dto);
         Filiere updateFiliere = filiereRepository.save(filiere);
         return filiereMapper.toResponse(updateFiliere);
 

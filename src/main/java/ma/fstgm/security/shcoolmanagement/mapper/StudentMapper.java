@@ -15,8 +15,8 @@ public class StudentMapper {
         student.setEmail(dto.email());
         student.setPassword(dto.password());
         student.setAge(dto.age());
-        student.setMajor(dto.majour());
-        student.getFiliere().setId(filiere.getId());
+        student.setMajor(dto.major());
+        student.setFiliere(filiere);
         return student;
     }
     public StudentResponse toResponse(Student student){
@@ -38,6 +38,6 @@ public class StudentMapper {
         student.setEmail(dto.email());
         student.setPassword(dto.password());
         student.setAge(dto.age());
-        student.setMajor(dto.majour());
+        student.setMajor(dto.major());
     }
 }

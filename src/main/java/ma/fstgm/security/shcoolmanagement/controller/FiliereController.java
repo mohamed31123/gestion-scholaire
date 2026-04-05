@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/filiere")
 public class FiliereController {
 
     private final FiliereService FiliereService;
@@ -25,7 +25,7 @@ public class FiliereController {
         return FiliereService.getAllFilieres();
     }
 
-    @GetMapping
+    @GetMapping("/GET/{id}")
     @Operation(summary = "recuperer une Filiere par son id ")
     public FiliereResponse getFiliereById(@RequestParam("id") Long id) {
         return FiliereService.getFiliereById(id);
@@ -36,21 +36,19 @@ public class FiliereController {
     public FiliereResponse insertFiliere(@RequestBody FiliereRequest dto) {
         return FiliereService.addFiliere(dto);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/delete/{id}")
     @Operation(summary = "supprimer une Filiere")
-    public void deleteFiliere( @PathVariable Long id) {
+    public void deleteFiliere(@PathVariable Long id) {
         FiliereService.deleteFiliere(id);
     }
 
 
-    @PostMapping
+    @PutMapping
     @Operation(summary = "modifier une Filiere")
-    public FiliereResponse updateFiliere(@Valid @RequestBody FiliereRequest dto , @RequestParam("id") Long id) {
+    public FiliereResponse updateFiliere(@Valid @RequestBody FiliereRequest dto, @RequestParam("id") Long id) {
         return FiliereService.updateFiliere(id, dto);
     }
-    
-    
-    
-    
-    
+
+
 }

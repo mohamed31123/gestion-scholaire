@@ -12,7 +12,7 @@ public class ProfesseurMapper {
         Professeur prof = new Professeur();
         prof.setNom(dto.nom());
         prof.setCode(dto.code());
-        prof.getDepartement().setId(departement.getId());
+        prof.setDepartement(departement);
         return prof;
     }
 

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record InscriptionRequest (
         Long idStudent ,
-        Long idCours
+        Long idCours ,
+        LocalDate dateInscription
 ){
 }

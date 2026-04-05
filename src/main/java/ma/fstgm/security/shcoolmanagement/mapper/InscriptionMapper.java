@@ -16,6 +16,7 @@ public class InscriptionMapper {
         inscription.setId(new InscriptionPK(course.getId(), student.getId()));
         inscription.setStudent(student);
         inscription.setCourse (course);
+        inscription.setDateInscription(dto.dateInscription());
         return inscription ;
     }
 
@@ -31,6 +32,6 @@ public class InscriptionMapper {
     }
     public void updateInscription(Inscription inscription , InscriptionRequest inscriptionRequest){
 
-        inscription.setDateInscription(inscription.getDateInscription());
+        inscription.setDateInscription(inscriptionRequest.dateInscription());
     }
 }

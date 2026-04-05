@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere, Long> {
-    Optional<Filiere> findByNom(Filiere filiere);
-    Optional<Filiere> findByCode(Filiere filiere);
+
+    Optional<Filiere> findByNom(String nom);
+
+    Optional<Filiere> findByCode(String code);
 }

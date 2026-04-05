@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface DepartementRepository extends JpaRepository<Departement , Long> {
 
-    Optional<Departement> findByNom(Departement departement);
+    Optional<Departement> findByNom(String nom);
 
 
     @Query("SELECT d FROM Departement d LEFT JOIN FETCH d.professeurs WHERE d.id = :id")

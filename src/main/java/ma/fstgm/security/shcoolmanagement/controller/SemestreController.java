@@ -38,15 +38,18 @@ public class SemestreController {
     public SemestreResponse insertSemestre(@RequestBody SemestreRequest dto) {
         return semestreService.addSemestre(dto);
     }
-    @DeleteMapping
+
+    @DeleteMapping("delete/{id}")
     @Operation(summary = "supprimer une semestre")
-    public void deleteSemestre( @PathVariable Long id) {
+    public void deleteSemestre(@PathVariable Long id) {
         semestreService.deleteSemestre(id);
     }
-    @PostMapping
-    @Operation(summary = "modifier une semestre")
-    public SemestreResponse updateSemestre(@Valid @RequestBody SemestreRequest dto , @RequestParam("id") Long id) {
-        return semestreService.updateSemestre(dto , id);
+
+
+
+    @PutMapping("update/{id}")
+    public SemestreResponse updateSemestre(@PathVariable  Long id, @Valid @RequestBody SemestreRequest dto) {
+        return semestreService.updateSemestre(dto, id);
     }
 
 

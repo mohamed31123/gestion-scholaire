@@ -31,8 +31,8 @@ public class CourseService {
         this.filiereMapper = filiereMapper;
     }
 
-    public CourseResponse addCourse(CourseRequest courseRequest) {
-        Course course = courseMapper.toEntity(courseRequest , new Professeur());
+    public CourseResponse addCourse(CourseRequest courseRequest , Professeur  prof) {
+        Course course = courseMapper.toEntity(courseRequest , prof);
         Course addCourse = courseRepository.save(course);
         return courseMapper.toResponse(addCourse);
     }
@@ -53,6 +53,7 @@ public class CourseService {
     public CourseResponse updateCours(Long id, CourseRequest dto) {
         Course course = courseRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Étudiant introuvable avec l'id : " + id));
+        courseMapper.updateCourse(course ,dto);
         Course updateCourse = courseRepository.save(course);
         return courseMapper.toResponse(updateCourse);
 

@@ -1,8 +1,10 @@
 package ma.fstgm.security.shcoolmanagement.services;
 
 
+import ma.fstgm.security.shcoolmanagement.controller.DepartementController;
 import ma.fstgm.security.shcoolmanagement.dto.request.ProfesseurRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.ProfesseurResponse;
+import ma.fstgm.security.shcoolmanagement.entities.Departement;
 import ma.fstgm.security.shcoolmanagement.entities.Professeur;
 import ma.fstgm.security.shcoolmanagement.exceptions.ResourceNotFoundException;
 import ma.fstgm.security.shcoolmanagement.mapper.ProfesseurMapper;
@@ -22,8 +24,8 @@ public class ProfesseurService {
        this.professeurMapper = professeurMapper;
    }
 
-   public ProfesseurResponse addProfesseur(ProfesseurRequest professeurRequest) {
-       Professeur prof  = professeurMapper.toEntity(professeurRequest);
+   public ProfesseurResponse addProfesseur(ProfesseurRequest professeurRequest , Departement departement) {
+       Professeur prof  = professeurMapper.toEntity(professeurRequest  , departement);
        Professeur saved = professeurRepository.save(prof);
        return professeurMapper.toResponse(saved);
    }
