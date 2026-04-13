@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import ma.fstgm.security.shcoolmanagement.dto.request.StudentRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.StudentResponse;
 
+import ma.fstgm.security.shcoolmanagement.entities.Filiere;
 import ma.fstgm.security.shcoolmanagement.services.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +24,8 @@ public class StudentController {
     @PostMapping
     @Operation(summary = "Adding a student")
     @ResponseStatus(HttpStatus.CREATED)
-    public StudentResponse addStudent(@Valid @RequestBody StudentRequest dto) {
-        return studentService.addStudent(dto);
+    public StudentResponse addStudent(@Valid @RequestBody StudentRequest dto , Filiere filiere) {
+        return studentService.addStudent(dto  , filiere);
     }
 
 

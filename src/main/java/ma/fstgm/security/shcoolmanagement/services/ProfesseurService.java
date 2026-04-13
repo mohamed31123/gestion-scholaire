@@ -52,8 +52,9 @@ public class ProfesseurService {
 
    }
 
-    public Professeur findProfById(Long id){
-        return professeurRepository.findById(id)
+    public ProfesseurResponse findProfById(Long id){
+        Professeur prof = professeurRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Professeur introuvable"));
+        return professeurMapper.toResponse(prof);
     }
 }
