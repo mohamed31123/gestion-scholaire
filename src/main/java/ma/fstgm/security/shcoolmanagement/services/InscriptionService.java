@@ -9,7 +9,9 @@ import ma.fstgm.security.shcoolmanagement.entities.InscriptionPK;
 import ma.fstgm.security.shcoolmanagement.entities.Student;
 import ma.fstgm.security.shcoolmanagement.exceptions.ResourceNotFoundException;
 import ma.fstgm.security.shcoolmanagement.mapper.InscriptionMapper;
+import ma.fstgm.security.shcoolmanagement.repositories.CourseRepository;
 import ma.fstgm.security.shcoolmanagement.repositories.InscriptionRepository;
+import ma.fstgm.security.shcoolmanagement.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,14 +20,23 @@ import java.util.List;
 public class InscriptionService {
     private InscriptionRepository inscriptionRepository;
     private InscriptionMapper inscriptionMapper;
+    private final CourseRepository courseRepository;
+    private final StudentRepository studentRepository;
 
-    public InscriptionService(InscriptionRepository inscriptionRepository, InscriptionMapper inscriptionMapper) {
+    public InscriptionService(InscriptionRepository inscriptionRepository,
+                              InscriptionMapper inscriptionMapper, CourseRepository courseRepository, StudentRepository studentRepository) {
         this.inscriptionRepository = inscriptionRepository;
         this.inscriptionMapper = inscriptionMapper;
+        this.courseRepository = courseRepository;
+        this.studentRepository = studentRepository;
     }
 
-    public InscriptionResponse createInscription(InscriptionRequest inscriptionRequest , Course course , Student student ) {
-        Inscription inscription = inscriptionMapper.toEntity(inscriptionRequest , course , student);
+    public InscriptionResponse createInscription(InscriptionRequest inscriptionRequest) {
+        Course course = courseRepository.findById(inscriptionRequest.idCours())
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
+        Student student = studentRepository.findById(inscriptionRequest.idStudent())
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+        Inscription inscription = inscriptionMapper.toEntity(inscriptionRequest, course, student);
         Inscription inscriptionSaved = inscriptionRepository.save(inscription);
         return inscriptionMapper.toResponse(inscriptionSaved);
     }
@@ -58,7 +69,7 @@ public class InscriptionService {
 
     public InscriptionResponse getInscriptionById(InscriptionPK id) {
         Inscription inscription = inscriptionRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Inscription introuvable avec le id : " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Inscription introuvable avec le id : " + id));
         return inscriptionMapper.toResponse(inscription);
     }
 }

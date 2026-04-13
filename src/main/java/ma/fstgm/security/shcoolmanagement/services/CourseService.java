@@ -2,12 +2,8 @@ package ma.fstgm.security.shcoolmanagement.services;
 
 
 import ma.fstgm.security.shcoolmanagement.dto.request.CourseRequest;
-import ma.fstgm.security.shcoolmanagement.dto.request.CourseWithProfRequest;
-import ma.fstgm.security.shcoolmanagement.dto.request.FiliereRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.CourseResponse;
-import ma.fstgm.security.shcoolmanagement.dto.response.FiliereResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Course;
-import ma.fstgm.security.shcoolmanagement.entities.Filiere;
 import ma.fstgm.security.shcoolmanagement.entities.Professeur;
 import ma.fstgm.security.shcoolmanagement.exceptions.ResourceNotFoundException;
 import ma.fstgm.security.shcoolmanagement.mapper.CourseMapper;
@@ -36,14 +32,12 @@ public class CourseService {
 
     }
 
-    public CourseResponse addCourse(CourseWithProfRequest request) {
-        CourseRequest courseRequest = request.getCourse();
-        Long profId = request.getProfesseurId();
-        // récupérer le prof depuis DB
-        Professeur prof = professeurRepository.findById(profId)
-                .orElseThrow(() -> new ResourceNotFoundException("Professeur introuvable avec id " + profId));
+    public CourseResponse addCourse(CourseRequest request) {
 
-        Course course = courseMapper.toEntity(courseRequest, prof);
+        Professeur prof = professeurRepository.findById(request.idProf())
+                .orElseThrow(() -> new ResourceNotFoundException("Professeur introuvable avec id " + request.idProf()));
+
+        Course course = courseMapper.toEntity(request, prof);
         Course addCourse = courseRepository.save(course);
         return courseMapper.toResponse(addCourse);
     }
