@@ -2,6 +2,7 @@ package ma.fstgm.security.shcoolmanagement.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.List;
@@ -17,10 +18,11 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nomCours ;
-    private String code ;
-
-    @OneToMany(mappedBy = "cours")
+    @NotBlank(message = "le nom de cours est obligatoire")
+    private String nomCours;
+    private String code;
+    @NotBlank(message = "le code de cours est obligatoire")
+    @OneToMany(mappedBy = "course")
     private List<Inscription> inscriptions;
 
     //la relation entre le prof et le cours

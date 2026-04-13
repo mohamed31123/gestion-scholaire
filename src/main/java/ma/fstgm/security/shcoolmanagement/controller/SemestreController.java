@@ -21,13 +21,13 @@ public class SemestreController {
         this.semestreService = semestreService;
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     @Operation(summary = "recuperer toutes les semestres")
     public List<SemestreResponse> getAllSemestre() {
         return semestreService.getAllSemestre();
     }
 
-    @GetMapping
+    @GetMapping("get/{id}")
     @Operation(summary = "recuperer une semestre par son id ")
     public SemestreResponse getSemestreById(@RequestParam("id") Long id) {
         return semestreService.getSemestreById(id);

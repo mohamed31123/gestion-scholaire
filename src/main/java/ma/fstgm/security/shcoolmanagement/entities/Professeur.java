@@ -1,6 +1,7 @@
 package ma.fstgm.security.shcoolmanagement.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.apache.catalina.LifecycleState;
 
@@ -18,7 +19,9 @@ public class Professeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Nom obligatoire")
     private String nom;
+    @NotBlank(message = "Code obligatoire")
     private String code;
 
 

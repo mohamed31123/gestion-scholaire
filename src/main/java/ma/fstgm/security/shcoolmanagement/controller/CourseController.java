@@ -4,6 +4,7 @@ package ma.fstgm.security.shcoolmanagement.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import ma.fstgm.security.shcoolmanagement.dto.request.CourseRequest;
+import ma.fstgm.security.shcoolmanagement.dto.request.CourseWithProfRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.CourseResponse;
 import ma.fstgm.security.shcoolmanagement.entities.Professeur;
 import ma.fstgm.security.shcoolmanagement.services.CourseService;
@@ -25,9 +26,9 @@ public class CourseController {
     @PostMapping
     @Operation(summary = "Adding a course")
     @ResponseStatus(HttpStatus.CREATED)
-    public CourseResponse addCourse(@Valid @RequestBody CourseRequest dto ,@Valid @RequestBody Professeur prof) {
+    public CourseResponse addCourse(@Valid @RequestBody CourseWithProfRequest request) {
 
-        return courseService.addCourse(dto , prof);
+        return courseService.addCourse(request);
     }
 
 
