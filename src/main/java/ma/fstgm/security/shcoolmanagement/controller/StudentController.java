@@ -24,13 +24,14 @@ public class StudentController {
     @PostMapping
     @Operation(summary = "Adding a student")
     @ResponseStatus(HttpStatus.CREATED)
-    public StudentResponse addStudent(@Valid @RequestBody StudentRequest dto , Filiere filiere) {
-        return studentService.addStudent(dto  , filiere);
+    public StudentResponse addStudent(@Valid @RequestBody StudentRequest dto ) {
+        return studentService.addStudent(dto );
     }
 
 
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<StudentResponse> getStudents() {
         return studentService.getAllStudents();
     }
@@ -38,6 +39,7 @@ public class StudentController {
 
 
     @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getting a student by id")
     public StudentResponse getStudent(@PathVariable Long id) {
         return studentService.getStudentById(id);
@@ -47,6 +49,7 @@ public class StudentController {
 
     @PutMapping("/update/{id}")
     @Operation(summary = "Updating a student")
+    @ResponseStatus(HttpStatus.OK)
     public StudentResponse updateStudent(@PathVariable Long id, @Valid @RequestBody StudentRequest dto) {
         return studentService.updateStudent(id, dto);
     }

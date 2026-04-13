@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProfesseurMapper {
-    public Professeur toEntity(ProfesseurRequest dto , Departement departement) {
+    public Professeur toEntity(ProfesseurRequest professeurRequest , Departement departement) {
         Professeur prof = new Professeur();
-        prof.setNom(dto.nom());
-        prof.setCode(dto.code());
+        prof.setNom(professeurRequest.nom());
+        prof.setCode(professeurRequest.code());
         prof.setDepartement(departement);
         return prof;
     }

@@ -1,5 +1,6 @@
 package ma.fstgm.security.shcoolmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -26,6 +27,7 @@ public class Professeur {
 
 
     @OneToMany(mappedBy = "professeur")
+    @JsonManagedReference
     private List<Course> courses;
 
     @ManyToOne

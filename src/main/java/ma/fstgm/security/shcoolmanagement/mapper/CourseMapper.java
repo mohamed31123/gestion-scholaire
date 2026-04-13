@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class CourseMapper {
     public Course toEntity(CourseRequest dto , Professeur prof){
         Course course = new Course();
+        course.setNomCours(dto.nomCours());
         course.setCode(dto.code());
         course.setProfesseur(prof);
-        course.setProfesseur(prof);
-        course.setNomCours(dto.nomCours());
+
         return course ;
     }
     public CourseResponse toResponse(Course course ){
