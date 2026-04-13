@@ -2,6 +2,7 @@ package ma.fstgm.security.shcoolmanagement.services;
 
 import ma.fstgm.security.shcoolmanagement.dto.request.StudentRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.StudentResponse;
+import ma.fstgm.security.shcoolmanagement.entities.Filiere;
 import ma.fstgm.security.shcoolmanagement.entities.Student;
 import ma.fstgm.security.shcoolmanagement.exceptions.ResourceNotFoundException;
 import ma.fstgm.security.shcoolmanagement.mapper.StudentMapper;
@@ -21,8 +22,8 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    public StudentResponse addStudent(StudentRequest studentRequest) {
-        Student student = studentMapper.toEntity(studentRequest);
+    public StudentResponse addStudent(StudentRequest studentRequest , Filiere filiere) {
+        Student student = studentMapper.toEntity(studentRequest , filiere);
         Student addStudent = studentRepository.save(student);
         return studentMapper.toResponse(addStudent);
 
