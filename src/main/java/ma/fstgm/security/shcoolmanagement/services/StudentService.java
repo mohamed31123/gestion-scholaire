@@ -19,16 +19,16 @@ public class StudentService {
     private final StudentMapper studentMapper;
     private final FiliereRepository filiereRepository;
 
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper ,  FiliereRepository filiereRepository) {
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper , FiliereRepository filiereRepository) {
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
         this.filiereRepository = filiereRepository;
     }
 
-    public StudentResponse addStudent(StudentRequest studentRequest ) {
+    public StudentResponse addStudent(StudentRequest studentRequest) {
         Filiere filiere = filiereRepository.findById(studentRequest.id_filiere())
-                .orElseThrow(()-> new ResourceNotFoundException("filiere n'existe pas"));
-        Student student = studentMapper.toEntity(studentRequest ,  filiere );
+                .orElseThrow(() -> new ResourceNotFoundException("Filiere not found"));
+        Student student = studentMapper.toEntity(studentRequest , filiere);
         Student addStudent = studentRepository.save(student);
         return studentMapper.toResponse(addStudent);
 

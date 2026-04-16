@@ -1,12 +1,17 @@
 package ma.fstgm.security.shcoolmanagement.exceptions;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+import java.time.LocalDateTime;
+
+@Getter
 @AllArgsConstructor
 public class ErrorResponse {
     private String message;
-    private int status;
-    private long timestamp;
+    private int status ;
+    private LocalDateTime timestamp;
+
+
+
 }
