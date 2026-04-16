@@ -2,6 +2,7 @@ package ma.fstgm.security.shcoolmanagement.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 public class Inscription {
     @EmbeddedId
     private InscriptionPK id;
+    @NotNull(message = "Date obligatoire")
     private LocalDate dateInscription;
 
 

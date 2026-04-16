@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import ma.fstgm.security.shcoolmanagement.dto.request.CourseRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.CourseResponse;
-import ma.fstgm.security.shcoolmanagement.entities.Professeur;
 import ma.fstgm.security.shcoolmanagement.services.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +24,8 @@ public class CourseController {
     @PostMapping
     @Operation(summary = "Adding a course")
     @ResponseStatus(HttpStatus.CREATED)
-    public CourseResponse addCourse(@Valid @RequestBody CourseRequest dto ,@Valid @RequestBody Professeur prof) {
-
-        return courseService.addCourse(dto , prof);
+    public CourseResponse addCourse(@Valid @RequestBody CourseRequest request) {
+        return courseService.addCourse(request);
     }
 
 
@@ -44,12 +42,7 @@ public class CourseController {
         return courseService.getCourseById(id);
     }
 
-    @PutMapping("/update/{id}")
-    @Operation(summary = "updating a course")
-    public CourseResponse updateCours(@PathVariable Long id, @Valid @RequestBody CourseRequest dto) {
 
-        return courseService.updateCours(id, dto);
-    }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleting a course")

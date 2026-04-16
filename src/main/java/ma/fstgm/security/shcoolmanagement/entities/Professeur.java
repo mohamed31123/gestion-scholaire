@@ -1,6 +1,8 @@
 package ma.fstgm.security.shcoolmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.apache.catalina.LifecycleState;
 
@@ -18,11 +20,14 @@ public class Professeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Nom obligatoire")
     private String nom;
+    @NotBlank(message = "Code obligatoire")
     private String code;
 
 
     @OneToMany(mappedBy = "professeur")
+    @JsonManagedReference
     private List<Course> courses;
 
     @ManyToOne
