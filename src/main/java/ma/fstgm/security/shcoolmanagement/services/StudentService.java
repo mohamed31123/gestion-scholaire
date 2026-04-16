@@ -2,9 +2,11 @@ package ma.fstgm.security.shcoolmanagement.services;
 
 import ma.fstgm.security.shcoolmanagement.dto.request.StudentRequest;
 import ma.fstgm.security.shcoolmanagement.dto.response.StudentResponse;
+import ma.fstgm.security.shcoolmanagement.entities.Filiere;
 import ma.fstgm.security.shcoolmanagement.entities.Student;
 import ma.fstgm.security.shcoolmanagement.exceptions.ResourceNotFoundException;
 import ma.fstgm.security.shcoolmanagement.mapper.StudentMapper;
+import ma.fstgm.security.shcoolmanagement.repositories.FiliereRepository;
 import ma.fstgm.security.shcoolmanagement.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +17,18 @@ import java.util.List;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final FiliereRepository filiereRepository;
 
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper) {
+    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper , FiliereRepository filiereRepository) {
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
+        this.filiereRepository = filiereRepository;
     }
 
     public StudentResponse addStudent(StudentRequest studentRequest) {
-        Student student = studentMapper.toEntity(studentRequest);
+        Filiere filiere = filiereRepository.findById(studentRequest.id_filiere())
+                .orElseThrow(() -> new ResourceNotFoundException("Filiere not found"));
+        Student student = studentMapper.toEntity(studentRequest , filiere);
         Student addStudent = studentRepository.save(student);
         return studentMapper.toResponse(addStudent);
 
